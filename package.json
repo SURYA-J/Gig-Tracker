@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "redux-batched-actions": "^0.5.0"
+  }
+}
