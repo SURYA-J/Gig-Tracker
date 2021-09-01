@@ -3,23 +3,15 @@ import { connect } from "react-redux";
 import AddGigForm from "./AddGigForm"
 import { startAddGig } from "../actions/gigs";
 
-export class AddGigPage extends React.Component {
-  constructor(props) {
-    super(props);
-    
-    this.onSubmit = this.onSubmit.bind(this)
-    console.log(props)
-  }
-  
+export class AddGigPage extends React.Component {  
   onSubmit = (gig) => {
-    console.log(this.props);
     this.props.startAddGig(gig);
-    this.props.history.push("/");
+    this.props.history.push("/dashboard");
   };
   render() {
     return (
       <div>
-        <h1>Add Gig</h1>
+        <h1 className="page-header__title-2">Add Gig</h1>
         <AddGigForm onSubmit={this.onSubmit} />
       </div>
     );

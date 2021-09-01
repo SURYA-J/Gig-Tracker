@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 const NotFound = () => (
     <div>
-        404!<Link to="/">go home</Link>
+        <img src='./not_found.png' width="300px" height="600px"></img>
     </div>
 );
 

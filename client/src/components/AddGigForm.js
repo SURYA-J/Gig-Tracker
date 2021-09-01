@@ -1,6 +1,5 @@
 import React from "react";
 import moment from "moment";
-import { DateRangePicker } from "rsuite";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import {
@@ -9,22 +8,29 @@ import {
 } from "@material-ui/pickers";
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
+import { connect } from "react-redux";
+import busyDates from "../selectors/busyDates";
 
-export default class ExpenseForm extends React.Component {
+class GigForm extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      companyName: props.expense ? props.expense.companyName : "",
-      startDate: props.expense ? moment(props.expense.startDate) : moment(),
-      endDate: props.expense ? moment(props.expense.endDate) : moment(),
-      note: props.expense ? props.expense.note : "",
-      perDeim: props.expense ? (props.expense.perDeim / 100).toString() : "",
-      
+      companyName: props.gig ? props.gig.companyName : "",
+      startDate: props.gig
+        ? moment(Number(props.gig.startDate))
+        : moment().startOf("day"),
+      endDate: props.gig
+        ? moment(Number(props.gig.endDate))
+        : moment().startOf("day"),
+      note: props.gig ? props.gig.note : "",
+      perDiem: props.gig ? props.gig.perDiem.toString() : "",
       calendarFocused: false,
+      edit: props.gig ? true : false,
+      busyDateWithoutUnnecessary: [],
       error: "",
     };
   }
+
   oncompanyNameChange = (e) => {
     const companyName = e.target.value;
     this.setState(() => ({ companyName }));
@@ -33,11 +39,10 @@ export default class ExpenseForm extends React.Component {
     const note = e.target.value;
     this.setState(() => ({ note }));
   };
-  onperDeimChange = (e) => {
-    const perDeim = e.target.value;
-
-    if (!perDeim || perDeim.match(/^\d{1,}(\.\d{0,2})?$/)) {
-      this.setState(() => ({ perDeim }));
+  onperDiemChange = (e) => {
+    const perDiem = e.target.value;
+    if (!perDiem || perDiem.match(/^\d{1,}(\.\d{0,2})?$/)) {
+      this.setState(() => ({ perDiem }));
     }
   };
 
@@ -53,18 +58,35 @@ export default class ExpenseForm extends React.Component {
   };
   onSubmit = (e) => {
     e.preventDefault();
+    let dummyDate = this.props.busyDate;
+    dummyDate = dummyDate.map((i) => Number(i));
 
-    if (!this.state.companyName || !this.state.perDeim) {
+    if (this.state.edit) {
+      let i = dummyDate.indexOf(this.props.gig.startDate);
+      let j = dummyDate.indexOf(this.props.gig.endDate);
+      dummyDate[i] = 0;
+      dummyDate[j] = 0;
+      console.log(dummyDate)
+    }
+    if (!this.state.companyName || !this.state.perDiem) {
       this.setState(() => ({
         error: "Please provide client company name and Per Deim.",
+      }));
+    } else if (
+      dummyDate.includes(this.state.startDate.valueOf()) ||
+      dummyDate.includes(this.state.endDate.valueOf())
+    ) {
+      this.setState(() => ({
+        error: "You are busy on the dates provided",
       }));
     } else {
       this.setState(() => ({ error: "" }));
       this.props.onSubmit({
+        user: this.props.user,
         companyName: this.state.companyName,
-        perDeim: parseFloat(this.state.perDeim, 10) * 100,
+        perDiem: parseFloat(this.state.perDiem, 10),
         startDate: this.state.startDate.valueOf(),
-        endDate:this.state.endDate.valueOf(),
+        endDate: this.state.endDate.valueOf(),
         note: this.state.note,
       });
     }
@@ -85,38 +107,38 @@ export default class ExpenseForm extends React.Component {
             onChange={this.oncompanyNameChange}
           />
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <div style={{ padding: 0 , display:"inline"}}>
-            <span className="text">from:  </span>
-            <Grid container style={{ display:"inline"}}>
-              <KeyboardDatePicker
-                style={{ flexBasis: "150px" ,display:"inline"}}
-                disableToolbar
-                margin="dense"
-                variant="inline"
-                format="dd/MM/yyyy"
-                id="date-picker-inline1"
-                value={this.state.startDate}
-                onChange={this.onStartDateChange}
-              />
-            </Grid>
-            <span className="text">&emsp;&emsp;&emsp;to:  </span>
-            
-            <Grid container style={{ display:"inline"}}>
-              <KeyboardDatePicker
-                style={{display:"inline"}}
-                disableToolbar
-                margin="dense"
-                variant="inline"
-                format="dd/MM/yyyy"
-                id="date-picker-inline2"
-                minDate={this.state.startDate}
-                value={this.state.endDate}
-                onChange={this.onEndDateChange}
-                KeyboardButtonProps={{
-                  "aria-label": "change date",
-                }}
-              />
-            </Grid>
+            <div style={{ padding: 0, display: "inline" }}>
+              <span className="text">from: </span>
+              <Grid container style={{ display: "inline" }}>
+                <KeyboardDatePicker
+                  style={{ flexBasis: "150px", display: "inline" }}
+                  disableToolbar
+                  margin="dense"
+                  variant="inline"
+                  format="dd/MM/yyyy"
+                  id="date-picker-inline1"
+                  value={this.state.startDate}
+                  onChange={this.onStartDateChange}
+                />
+              </Grid>
+              <span className="text">&emsp;&emsp;&emsp;to: </span>
+
+              <Grid container style={{ display: "inline" }}>
+                <KeyboardDatePicker
+                  style={{ display: "inline" }}
+                  disableToolbar
+                  margin="dense"
+                  variant="inline"
+                  format="dd/MM/yyyy"
+                  id="date-picker-inline2"
+                  minDate={this.state.startDate}
+                  value={this.state.endDate}
+                  onChange={this.onEndDateChange}
+                  KeyboardButtonProps={{
+                    "aria-label": "change date",
+                  }}
+                />
+              </Grid>
             </div>
           </MuiPickersUtilsProvider>
 
@@ -124,8 +146,8 @@ export default class ExpenseForm extends React.Component {
             type="text"
             placeholder="Per Diem"
             className="text-input"
-            value={this.state.perDeim}
-            onChange={this.onperDeimChange}
+            value={this.state.perDiem}
+            onChange={this.onperDiemChange}
           />
           <textarea
             placeholder="Description"
@@ -141,3 +163,14 @@ export default class ExpenseForm extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const user = state.auth.uid;
+  const busyDate = busyDates(state.gigs);
+  return {
+    busyDate,
+    user,
+  };
+};
+
+export default connect(mapStateToProps)(GigForm);

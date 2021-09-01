@@ -9,7 +9,22 @@
   padding: $vs-size;
   text-decoration: none;
 }
+.removebutton{
 
+  position:relative;
+  top: 0%;
+  left: 14%;
+    background:rgb(185, 52, 79);
+    border: none;
+    color: white;
+    display: inline-block;
+    font-size: $font-size-small;
+    font-weight: 400;
+    line-height: 1;
+    padding: $vs-size;
+    text-decoration: none;
+
+}
 .button--link {
   background: none;
 }

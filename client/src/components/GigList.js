@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import GigListItem from './GigListItem';
-
+import getVisibleGigs from '../selectors/gigs';
 export const GigList = (props) => (
-  <div className="content-container">
+  <div className="content-container-2">
     <div className="list-header">
-      <div className="show-for-mobile">Gig</div>
-      <div className="show-for-desktop">Gig</div>
+      <div className="show-for-desktop">Gigs</div>
       <div className="show-for-desktop">Per Diem</div>
     </div>
     <div className="list-body">
@@ -17,7 +16,7 @@ export const GigList = (props) => (
           </div>
         ) : (
             props.gigs.map((gig) => {
-              return <GigListItem key={gig.id} {...gig} />;
+              return <GigListItem key={gig.uid} {...gig} />;  
             })
           )
       }
@@ -27,7 +26,7 @@ export const GigList = (props) => (
 
 const mapStateToProps = (state) => {
   return {
-    gigs: state.gigs
+    gigs : getVisibleGigs(state.gigs, state.filters)
   };
 };
 

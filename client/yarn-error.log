@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\jsury\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add numeral
+  C:\Program Files\nodejs\node.exe C:\Users\jsury\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add redux-persist
 
 PATH: 
-  C:\Program Files\WindowsApps\Microsoft.PowerShell_7.1.3.0_x64__8wekyb3d8bbwe;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\jsury\AppData\Local\Programs\Python\Python39\Scripts;C:\Users\jsury\AppData\Local\Programs\Python\Python39\Scripts;C:\Users\jsury\AppData\Local\Microsoft\WindowsApps;C:\Users\jsury\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\jsury\AppData\Roaming\npm;C:\Users\jsury\AppData\Local\GitHubDesktop\bin
+  C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\jsury\AppData\Local\Programs\Python\Python39\Scripts;C:\Users\jsury\AppData\Local\Programs\Python\Python39\Scripts;C:\Users\jsury\AppData\Local\Microsoft\WindowsApps;C:\Users\jsury\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\jsury\AppData\Roaming\npm;C:\Users\jsury\AppData\Local\GitHubDesktop\bin
 
 Yarn version: 
   1.22.10
@@ -44,12 +44,13 @@ npm manifest:
       "babel-plugin-transform-object-rest-spread": "6.23.0",
       "babel-preset-env": "1.5.2",
       "babel-preset-react": "6.24.1",
-      "css-loader": "0.28.4",
+      "css-loader": "^0.28.4",
       "date-fns": "^2.22.1",
       "live-server": "^1.2.1",
-      "moment": "2",
+      "moment": "^2.29.1",
       "node-sass": "4",
       "normalize.css": "^8.0.1",
+      "numeral": "^2.0.6",
       "react": "latest",
       "react-addons-shallow-compare": "15.6",
       "react-date": "^2.0.0",
@@ -62,7 +63,8 @@ npm manifest:
       "redux-thunk": "^2.3.0",
       "rsuite": "^4.10.2",
       "sass-loader": "6",
-      "style-loader": "0.18.2",
+      "style-loader": "^0.18.2",
+      "update": "^0.7.4",
       "uuid": "3",
       "validator": "8",
       "webpack": "3.1.0",

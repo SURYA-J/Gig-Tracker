@@ -46,15 +46,30 @@
 }
 
 .list-item__title {
+  padding-bottom: 3px;
   margin: 0;
   word-break: break-all;
+  font-size:1.3rem;
 }
 
-.list-item__sub-title {
+.list-item__sub-title{
+  padding-bottom: 10px;
   color: $grey;
-  font-size: $font-size-small;
+  font-size: 1rem;
+  font-family: 'Lucida Sans';
+  
 }
 
+.list-item__sub-title-1 {
+  color:rgb(31, 28, 28);
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.list-item__id{
+  font-size: small;
+  margin-bottom: 5px;
+}
 .list-item__data {
   margin: $s-size 0 0 0;
   @media (min-width: $desktop-breakpoint) {
@@ -62,3 +77,4 @@
     padding-left: $s-size;
   }
 }
+

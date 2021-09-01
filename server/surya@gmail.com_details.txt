@@ -1,0 +1,5 @@
+
+e70bb727-838f-45e5-82a1-085e30e41424|RBS Solutions private limited|Frontend Development-->Build MVP website with integrated Analytics for Sleep Health Marketplace Startup|6000|1629052200000|1630261800000
+538b576d-c6ca-4437-9c92-beb380275f46|IdealVillage|User Interface Design-->Fixing NFT React storefront--I need someone to fix few React UI/UX issues on existing NFT store front and fix the responsive design.|4000|1632767400000|1632940200000
+d762292c-73a0-49d4-a03f-12beab7355eb|Snippt|Data Analysis-->A Data Mining project with detailed reporting--Implementation of 4-5 data mining models on the dataset Gain insights, interpret and compare results, provide suggestions to improve.The final report which is non-plagiarized and detailed is expected to better understand the implementation|12499|1627756200000|1627929000000
+98ab78af-815c-49a2-beee-d1116b218184| Instagram|Software Testing-->Fetch data and testing using Instagram Graph API - It is necessary to extract data (the number of comments and likes and places - let's call it socialdata) from the Instagram API|10819|1628101800000|1628274600000

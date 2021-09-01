@@ -6,13 +6,26 @@
 
 .page-header__actions {
   margin-top: $m-size;
+  position: relative;
+  left: 15%;
 }
 
 .page-header__title {
   font-weight: 300;
   margin: 0;
+  position: relative;
+  left: 15%;
   
   span {
     font-weight: 600;
   }
+}
+
+.page-header__title-2 {
+  font-weight: 300;
+  margin: 0;
+  position: relative;
+  left: 13%;
+  padding: 13px;
+  padding-bottom: 0;
 }
